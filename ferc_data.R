@@ -17,6 +17,16 @@ getSeason <- function(date) {
                   ifelse (d >= SS & d < FE, return("Summer"), return("Fall"))))
 }
 
+# fix column names from 2006 to 2011
+fix_col_name <- function(dataset){
+  
+  colnames(dataset)[34] <- "State"
+  colnames(dataset)[35] <- "County"
+  
+  return(dataset)
+  
+}
+
 library(dplyr)
 library(stringr)
 library(tidyr)
@@ -151,6 +161,7 @@ complete_2006 <- complete_2006[,-34]
 
 complete_2006 <- complete_2006 %>% drop_na()
 complete_2006 <- complete_2006[,-34]
+complete_2006 <- fix_col_name(complete_2006)
 write.csv(complete_2006, file = "ferc_2006.csv",row.names = F)
 
 #### 2007 ####
@@ -214,6 +225,7 @@ complete_2007 <- complete_2007[,-34]
 
 complete_2007 <- complete_2007 %>% drop_na()
 complete_2007 <- complete_2007[,-34]
+complete_2007 <- fix_col_name(complete_2007)
 
 write.csv(complete_2007, file = "ferc_2007.csv",row.names = F)
 
@@ -277,6 +289,7 @@ complete_2008 <- complete_2008[,c(-34, -35)]
 
 
 complete_2008 <- complete_2008 %>% drop_na()
+complete_2008 <- fix_col_name(complete_2008)
 
 write.csv(complete_2008, file = "ferc_2008.csv",row.names = F)
 
@@ -333,6 +346,7 @@ complete_2009 <- complete_2009[,c(-34, -35)]
 
 
 complete_2009 <- complete_2009 %>% drop_na()
+complete_2009 <- fix_col_name(complete_2009)
 
 write.csv(complete_2009, file = "ferc_2009.csv",row.names = F)
 
@@ -385,6 +399,7 @@ complete_2010 <- complete_2010[,c(-34, -35)]
 
 
 complete_2010 <- complete_2010 %>% drop_na()
+complete_2010 <- fix_col_name(complete_2010)
 
 write.csv(complete_2010, file = "ferc_2010.csv",row.names = F)
 
@@ -441,6 +456,7 @@ complete_2011 <- complete_2011[,c(-34, -35)]
 
 
 complete_2011 <- complete_2011 %>% drop_na()
+complete_2011 <- fix_col_name(complete_2011)
 
 write.csv(complete_2011, file = "ferc_2011.csv",row.names = F)
 
